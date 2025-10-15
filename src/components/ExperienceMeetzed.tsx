@@ -1,4 +1,11 @@
-export default function ExperienceMeetzed({ data }: { data: any }) {
+interface ExperienceMeetzedData {
+  title?: string;
+  role?: string;
+  period?: string;
+  bullets?: string[];
+}
+
+export default function ExperienceMeetzed({ data }: { data: ExperienceMeetzedData }) {
   return (
     <article className="col-span-6 rounded-2xl bg-foreground p-10">
       <section className="flex items-center justify-between border-b border-b-grey pb-10">
@@ -15,7 +22,7 @@ export default function ExperienceMeetzed({ data }: { data: any }) {
         </span>
       </section>
       <ul className="list-disc list-inside text-white text-sm mt-6">
-        {data.bullets.map((b: string) => (
+        {data.bullets?.map((b: string) => (
           <li key={b}>{b}</li>
         ))}
       </ul>

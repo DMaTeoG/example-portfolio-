@@ -1,4 +1,17 @@
-export default function EducationSection({ data }: { data: any }) {
+interface EducationItem {
+  title: string;
+  field: string;
+  location: string;
+  period: string;
+}
+
+interface EducationData {
+  highSchool: EducationItem;
+  diploma: EducationItem;
+  graduation: EducationItem;
+}
+
+export default function EducationSection({ data }: { data: EducationData }) {
   return (
     <section className="flex flex-col gap-4 items-center col-span-6 row-span-3 rounded-2xl bg-foreground p-10">
       <article className="flex items-center justify-between w-full border-b border-b-grey pb-8">

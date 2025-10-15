@@ -1,4 +1,11 @@
-export default function ExperienceFreelance({ data }: { data: any }) {
+interface ExperienceFreelanceData {
+  title: string;
+  role: string;
+  period: string;
+  bullets: string[];
+}
+
+export default function ExperienceFreelance({ data }: { data: ExperienceFreelanceData }) {
   return (
     <article className="col-span-6 rounded-2xl bg-foreground p-10">
       <section className="flex items-center justify-between border-b border-b-grey pb-10">
