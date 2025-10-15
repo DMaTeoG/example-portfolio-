@@ -11,7 +11,8 @@ import EducationSection from "@/components/EducationSection";
 import EditingToolsSection from "@/components/EditingToolsSection";
 import LanguagesSection from "@/components/LanguagesSection";
 import ThemeToggle from "@/components/ThemeToggle";
-
+import PortfolioSection from "@/components/PortfolioSection";
+import DetailsSection from "@/components/DetailsSection";
 export async function generateStaticParams() {
   return languages.map((lang) => ({ lang }));
 }
@@ -38,6 +39,8 @@ export default async function Home({
         <EducationSection data={dict.sections.education} />
         <EditingToolsSection title={dict.sections.editingTools} />
         <LanguagesSection title={dict.sections.languages} />
+        <PortfolioSection />
+        <DetailsSection />
       </main>
     </div>
   );
