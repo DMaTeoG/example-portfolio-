@@ -10,6 +10,7 @@ import DesignToolsSection from "@/components/DesignToolsSection";
 import EducationSection from "@/components/EducationSection";
 import EditingToolsSection from "@/components/EditingToolsSection";
 import LanguagesSection from "@/components/LanguagesSection";
+import ThemeToggle from "@/components/ThemeToggle";
 
 export async function generateStaticParams() {
   return languages.map((lang) => ({ lang }));
@@ -25,6 +26,7 @@ export default async function Home({
 
   return (
     <div className="font-sans flex justify-center">
+      <ThemeToggle />
       <LanguageSwitcher currentLang={lang} />
       <main className="grid grid-cols-12 container mt-20 gap-10">
         <AvatarSection />

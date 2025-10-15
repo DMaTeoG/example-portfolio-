@@ -1,11 +1,36 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
+/* 🎨 Variables base (modo claro por defecto) */
 :root {
-  --background: #ffffff;
-  --foreground: #1d1d1d;
-  --grey: #757575;
+  --background: #f4f4f4;
+  --foreground: #181818;
+  --card: #ffffff;
+  --text: #111;
+  --accent: #222;
+  --grey: #a0a0a0;
 }
 
+/* 🌙 Variables modo oscuro (activadas con .dark en <html>) */
+.dark {
+  --background: #0b0b0f;
+  --foreground: #141414;
+  --card: #181818;
+  --text: #ffffff;
+  --accent: #2e2e2e;
+  --grey: #5b5b5b;
+}
+
+/* 🧩 Modo automático si el SO está en dark mode */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #000000;
+    --foreground: #1d1d1d;
+    --grey: #757575;
+    --text: #ffffff;
+  }
+}
+
+/* 🧠 Tailwind CSS Theme inline */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -14,15 +39,71 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #000000;
-    --foreground: #1d1d1d;
-    --grey: #757575;
+/* 🪄 Estilos globales */
+body {
+  background-color: var(--background);
+  color: var(--text);
+  font-family: Arial, Helvetica, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 🧱 Clases personalizadas de Tailwind que usan variables CSS */
+@layer base {
+  .bg-background {
+    @apply bg-[var(--background)];
+  }
+  .bg-foreground {
+    @apply bg-[var(--foreground)];
+  }
+  .text-grey {
+    @apply text-[var(--grey)];
+  }
+  .text-white {
+    @apply text-[var(--text)];
   }
 }
 
-body {
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+/* 📱 Responsividad sin tocar el grid original */
+@layer utilities {
+  @media (max-width: 1024px) {
+    main {
+      grid-template-columns: repeat(8, minmax(0, 1fr)) !important;
+      gap: 1.5rem !important;
+    }
+  }
+
+  @media (max-width: 768px) {
+    main {
+      grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+      gap: 1rem !important;
+    }
+
+    main > * {
+      grid-column: span 4 / span 4 !important;
+    }
+
+    .p-10 {
+      padding: 1.5rem !important;
+    }
+  }
+
+  @media (max-width: 480px) {
+    main {
+      grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+      gap: 0.75rem !important;
+    }
+
+    main > * {
+      grid-column: span 1 / span 1 !important;
+    }
+
+    img {
+      width: 100% !important;
+      height: auto !important;
+    }
+  }
 }
